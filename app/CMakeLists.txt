@@ -26,9 +26,13 @@ if (WIN32)
 endif (WIN32)
 
 find_package(Qt6 REQUIRED COMPONENTS Quick)
-
 qt_standard_project_setup(REQUIRES 6.5)
-qt_policy(SET QTP0004 NEW)
+
+message(STATUS QT_VERSION=${Qt6_VERSION})
+if (Qt6_VERSION VERSION_GREATER_EQUAL "6.6.0")
+    qt_policy(SET QTP0004 NEW)
+endif()
+
 
 qt_add_executable(${APP_NAME}
     ${APP_RC}
