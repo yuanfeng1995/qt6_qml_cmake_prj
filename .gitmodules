@@ -1,3 +1,4 @@
-[submodule "thirdparty/qwindowkit"]
-	path = thirdparty/qwindowkit
+
+[submodule "3rd/QWK"]
+	path = 3rd/QWK
 	url = https://github.com/stdware/qwindowkit.git

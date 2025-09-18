@@ -31,5 +31,5 @@ add_subdirectory(cppfeature)
 
 if(Qt6_DIR)
     set(QWINDOWKIT_BUILD_QUICK ON)
-    add_subdirectory(thirdparty/qwindowkit)
+    add_subdirectory(3rd/QWK)
 endif ()
