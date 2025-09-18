@@ -19,6 +19,10 @@ Window {
             windowAgent.setSystemButton(WindowAgent.Minimize, minButton)
             windowAgent.setSystemButton(WindowAgent.Maximize, maxButton)
             windowAgent.setSystemButton(WindowAgent.Close, closeButton)
+            windowAgent.setWindowAttribute("acrylic-material", false)
+            windowAgent.setWindowAttribute("mica", false)
+            windowAgent.setWindowAttribute("mica-alt", false)
+            windowAgent.setWindowAttribute("dwm-blur", false)
             window.visible = true
         })
     }
