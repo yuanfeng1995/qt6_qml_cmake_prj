@@ -26,7 +26,7 @@ if (WIN32)
 endif (WIN32)
 
 find_package(Qt6 REQUIRED COMPONENTS Quick)
-qt_standard_project_setup(REQUIRES 6.5)
+qt_standard_project_setup(REQUIRES 6.9)
 
 message(STATUS QT_VERSION=${Qt6_VERSION})
 if (Qt6_VERSION VERSION_GREATER_EQUAL "6.6.0")
