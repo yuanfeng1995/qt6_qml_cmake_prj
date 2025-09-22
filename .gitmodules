@@ -2,6 +2,3 @@
 [submodule "3rd/QWK"]
 	path = 3rd/QWK
 	url = https://github.com/stdware/qwindowkit.git
-[submodule "3rd/Catch2"]
-	path = 3rd/Catch2
-	url = https://github.com/catchorg/Catch2.git

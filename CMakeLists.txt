@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.20)
 
 option(WITH_QAPP "Build with Qt Application support" OFF)
+option(WITH_UNIT_TESTS "Build with unit tests" ON)
 
 if (CMAKE_BUILD_TYPE STREQUAL "Debug")
     set(_OUTPUT_DIR_RUNTIME ${CMAKE_SOURCE_DIR}/target/bin_d)
@@ -37,5 +38,4 @@ add_subdirectory(app)
         add_subdirectory(3rd/QWK)
     endif (Qt6_DIR)
 endif (WITH_QAPP)
-
 
