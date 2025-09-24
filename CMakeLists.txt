@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.20)
 
 option(WITH_QAPP "Build with Qt Application support" OFF)
-option(WITH_UNIT_TESTS "Build with unit tests" ON)
+option(WITH_UNIT_TESTS "Build with unit tests" OFF)
 
 if (CMAKE_BUILD_TYPE STREQUAL "Debug")
     set(_OUTPUT_DIR_RUNTIME ${CMAKE_SOURCE_DIR}/target/bin_d)
