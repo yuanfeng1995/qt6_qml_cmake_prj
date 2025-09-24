@@ -1,6 +1,5 @@
 ﻿#pragma once
 
-#include <functional>
 #include <string_view>
 #include <unordered_map>
 #include "Variant.h"
@@ -24,21 +23,20 @@ public:
     template<typename T>
     std::optional<T> getProperty(std::string_view name) const
     {
-        const auto key = std::string{name};
-        if (properties_.contains(key))
+        if (const auto key = std::string{name}; properties_.contains(key))
         {
             return properties_.at(key).get<T>();
         }
         return std::nullopt;
     }
 
-    void removeProperty(std::string_view name)
+    void remove(std::string_view name)
     {
         const auto key = std::string{name};
         properties_.erase(key);
     }
 
-    [[nodiscard]] bool hasProperty(std::string_view name) const
+    [[nodiscard]] bool has(std::string_view name) const
     {
         const auto key = std::string{name};
         return properties_.contains(key);

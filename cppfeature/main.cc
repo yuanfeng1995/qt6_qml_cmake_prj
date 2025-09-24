@@ -63,8 +63,8 @@ void test_property()
     }
 
     // 删除属性
-    prop.removeProperty("height");
-    if (!prop.hasProperty("height"))
+    prop.remove("height");
+    if (!prop.has("height"))
     {
         std::cout << "Height property removed\n";
     }
