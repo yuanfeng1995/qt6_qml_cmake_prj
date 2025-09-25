@@ -10,21 +10,8 @@ namespace LIVIO
 class Variant final
 {
 public:
-    Variant()                               = default;
-    Variant(const Variant &)                = default;
-    Variant(Variant &&) noexcept            = default;
-    Variant &operator=(const Variant &)     = default;
-    Variant &operator=(Variant &&) noexcept = default;
-    ~Variant()                              = default;
-
     Variant(const char *str) : value_(std::string(str)) // NOLINT(*-explicit-constructor)
     {
-    }
-
-    Variant &operator=(const char *str)
-    {
-        value_ = std::string(str);
-        return *this;
     }
 
     template<typename T>
@@ -32,11 +19,16 @@ public:
     {
     }
 
-
     template<typename T>
     Variant &operator=(T &&value)
     {
         value_ = std::forward<T>(value);
+        return *this;
+    }
+
+    Variant &operator=(const char *str)
+    {
+        value_ = std::string{str};
         return *this;
     }
 
@@ -71,9 +63,7 @@ public:
 
     [[nodiscard]] std::string typeName() const
     {
-        if (isNull())
-            return "null";
-        return value_.type().name();
+        return value_.has_value() ? value_.type().name() : "undefined";
     }
 
 private:
