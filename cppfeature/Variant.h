@@ -10,12 +10,14 @@ namespace LIVIO
 class Variant final
 {
 public:
-    Variant(const char *str) : value_(std::string(str)) // NOLINT(*-explicit-constructor)
+    Variant()                     = default;
+
+    Variant(const char *str) noexcept : value_(std::string(str)) // NOLINT(*-explicit-constructor)
     {
     }
 
     template<typename T>
-    Variant(T &&value) : value_(std::forward<T>(value)) // NOLINT(*-explicit-constructor)
+    Variant(T &&value) noexcept : value_(std::forward<T>(value)) // NOLINT(*-explicit-constructor)
     {
     }
 
