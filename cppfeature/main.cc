@@ -14,32 +14,6 @@
 
 using namespace LIVIO;
 
-void test_variant()
-{
-    Variant v;
-
-    // 整型测试
-    v = 42;
-    std::cout << "INT: " << v.get<int>().value() << std::endl;
-
-
-    // 浮点数测试
-    v = 3.14;
-    std::cout << "FLOAT: " << std::fixed << v.get<double>().value() << std::endl;
-
-    // 字符串测试
-    v = std::string("hello variant");
-    std::cout << "STRING: " << v.get<std::string>().value() << std::endl;
-
-    // 类型检查演示
-    std::cout << "IS DOUBLE: " << (v.is<double>() ? "yes" : "no") << std::endl;
-
-    // 清空操作
-    v.clear();
-    std::cout << "IS VALID: " << (v.isValid() ? "yes" : "no") << std::endl;
-}
-
-
 void test_property()
 {
     Property prop;
@@ -51,10 +25,8 @@ void test_property()
     prop.setProperty("height", 175.5f);
 
     // 获取属性
-    auto username = prop.getProperty<std::string>("username").value();
-    std::cout << "Username: " << username << std::endl;
-    auto age = prop.getProperty<int>("age").value();
-    std::cout << "Age: " << age << std::endl;
+    std::cout << "Username: " << prop.getProperty<std::string>("username").value() << std::endl;
+    std::cout << "Age: " << *prop.getProperty<int>("age") << std::endl;
 
     // 检查属性存在性
     if (const auto active = prop.getProperty<bool>("active"); active.has_value())
@@ -63,8 +35,8 @@ void test_property()
     }
 
     // 删除属性
-    prop.remove("height");
-    if (!prop.has("height"))
+    prop.removeProperty("height");
+    if (!prop.hasProperty("height"))
     {
         std::cout << "Height property removed\n";
     }
@@ -76,10 +48,31 @@ void test_property()
     }
 }
 
+void test_variant() {
+    LIVIO::Variant v;
 
-int main(int argc, const char *argv[])
-{
-    // test_variant();
+    // 整型测试
+    v = 42;
+    std::cout << "整型值: " << v.get<int>().value() << std::endl;
+
+    // 浮点数测试
+    v = 3.14;
+    std::cout << "浮点值: " << std::fixed << v.get<double>().value() << std::endl;
+
+    // 字符串测试
+    v = std::string("hello variant");
+    std::cout << "字符串值: " << v.get<std::string>().value() << std::endl;
+
+    // 类型检查演示
+    std::cout << "是否是double类型? " << (v.is<double>() ? "是" : "否") << std::endl;
+
+    // 清空操作
+    v.clear();
+    std::cout << "清空后是否有效? " << (v.isValid() ? "是" : "否") << std::endl;
+}
+
+int main(int argc, const char *argv[]) {
     test_property();
+    test_variant();
     return 0;
 }
