@@ -10,6 +10,10 @@ set "batchArgs=%*"
 
 :: 检查管理员权限
 net session >nul 2>&1
+if %errorLevel% neq 0 (
+    powershell -Command "Start-Process '%~f0' -Verb RunAs"
+    exit /b
+)
 if %errorlevel% neq 0 (
     echo 正在请求管理员权限...
     echo Set UAC = CreateObject^("Shell.Application"^) > "%temp%\getadmin.vbs"

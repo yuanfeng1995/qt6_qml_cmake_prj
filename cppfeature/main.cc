@@ -14,6 +14,20 @@
 
 using namespace LIVIO;
 
+
+
+struct A {
+    int x;
+    double y;
+};
+
+struct B {
+    std::string name;
+    A a;
+};
+
+B b{"example", {10, 20.5}};
+
 void test_property()
 {
     Property prop;
@@ -23,11 +37,17 @@ void test_property()
     prop.set("age", 30);
     prop.set("active", true);
     prop.set("height", 175.5f);
+    prop.set("B", b);
 
     // 获取属性
     std::cout << "Username: " << prop.get<std::string>("username").value() << std::endl;
     std::cout << "Age: " << *prop.get<int>("age") << std::endl;
-
+    std::cout << std::format("Height: {:.2f} cm\n", prop.get<float>("height").value());
+    if (auto retrieved = prop.get<B>("B"); retrieved.has_value()) {
+        std::cout << std::format("Custom Type B: name={}, a.x={}, a.y={}\n",
+                                 retrieved->name, retrieved->a.x, retrieved->a.y);
+    }
+    
     // 检查属性存在性
     if (const auto active = prop.get<bool>("active"); active.has_value())
     {
@@ -65,6 +85,13 @@ void test_variant() {
 
     // 类型检查演示
     std::cout << "是否是double类型? " << (v.is<double>() ? "是" : "否") << std::endl;
+
+    // 自定义类型测试
+    v = b;
+    if (auto retrieved = v.get<B>(); retrieved.has_value()) {
+        std::cout << std::format("自定义类型B: name={}, a.x={}, a.y={}\n",
+                                 retrieved->name, retrieved->a.x, retrieved->a.y);
+    }
 
     // 清空操作
     v.clear();
