@@ -9,19 +9,13 @@ namespace LIVIO
 class Property
 {
 public:
-    template<typename T>
-    void setProperty(std::string name, T &&value)
-    {
-        setProperty(std::move(name), Variant{std::forward<T>(value)});
-    }
-
-    void setProperty(std::string name, Variant &&value)
+    void set(std::string name, Variant &&value)
     {
         properties_.insert_or_assign(std::move(name), std::move(value));
     }
 
     template<typename T>
-    std::optional<T> getProperty(std::string_view name) const
+    std::optional<T> get(std::string_view name) const
     {
         if (const auto key = std::string{name}; properties_.contains(key))
         {

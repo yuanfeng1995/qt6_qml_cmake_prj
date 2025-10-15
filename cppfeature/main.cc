@@ -19,30 +19,30 @@ void test_property()
     Property prop;
 
     // 设置属性
-    prop.setProperty("username", "JohnDoe");
-    prop.setProperty("age", 30);
-    prop.setProperty("active", true);
-    prop.setProperty("height", 175.5f);
+    prop.set("username", "JohnDoe");
+    prop.set("age", 30);
+    prop.set("active", true);
+    prop.set("height", 175.5f);
 
     // 获取属性
-    std::cout << "Username: " << prop.getProperty<std::string>("username").value() << std::endl;
-    std::cout << "Age: " << *prop.getProperty<int>("age") << std::endl;
+    std::cout << "Username: " << prop.get<std::string>("username").value() << std::endl;
+    std::cout << "Age: " << *prop.get<int>("age") << std::endl;
 
     // 检查属性存在性
-    if (const auto active = prop.getProperty<bool>("active"); active.has_value())
+    if (const auto active = prop.get<bool>("active"); active.has_value())
     {
         std::cout << "Account status: " << (active.value() ? "Active" : "Inactive") << std::endl;
     }
 
     // 删除属性
-    prop.removeProperty("height");
-    if (!prop.hasProperty("height"))
+    prop.remove("height");
+    if (!prop.has("height"))
     {
         std::cout << "Height property removed\n";
     }
 
     // 处理不存在属性
-    if (const auto invalid = prop.getProperty<double>("invalid_key"); !invalid.has_value())
+    if (const auto invalid = prop.get<double>("invalid_key"); !invalid.has_value())
     {
         std::cout << "Invalid key not found\n";
     }
