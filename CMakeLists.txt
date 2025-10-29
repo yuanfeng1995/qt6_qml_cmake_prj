@@ -29,7 +29,7 @@ set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 add_compile_options("$<$<CXX_COMPILER_ID:MSVC>:/utf-8>")
 
-add_subdirectory(cppfeature)
+add_subdirectory(commtoolkits)
 
 if (WITH_QAPP)
 add_subdirectory(app)

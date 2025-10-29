@@ -50,9 +50,20 @@ qt_add_qml_module(${APP_NAME}
     URI ${APP_NAME}
     VERSION 1.0
     QML_FILES
-    qml/Main.qml
-    qml/FramelessWindow.qml
+    qml/Main/Main.qml
+    qml/Main/FramelessWindow.qml
 )
+
+#qt_add_qml_module(${APP_NAME}_Login
+#    URI ${APP_NAME}_Login
+#    VERSION 1.0
+#    QML_FILES
+#    qml/Login/LoginAccountPage.qml
+#    qml/Login/LoginDialog.qml
+#    qml/Login/LoginOAuthPage.qml
+#    qml/Login/LoginPhonePage.qml
+#    OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/app/Login"
+#)
 
 set_target_properties(${APP_NAME} PROPERTIES
     MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
